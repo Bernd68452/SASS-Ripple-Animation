@@ -1,0 +1,73 @@
+$ripple-animation-length: 5s;
+$ripple-animation-delay: 400ms;
+$ripple-scale-size: 0.005;
+
+body {
+	width: 100vw;
+  height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+  position: relative;
+}
+
+div {
+  position: absolute;
+  border-radius: 50%;
+  color: transparent;
+  transform-origin: center;
+      
+  @for $i from 6 through 1 {
+    &:nth-child(#{$i}) {
+      width: (632px - (84px * $i));
+      height: (682px - (84px * $i));
+      animation: (ripple+$i) $ripple-animation-length infinite ease-in-out;
+      animation-delay: (1200ms - ($ripple-animation-delay * $i));
+    }
+  }
+}
+
+#enjoyment_one {
+  background-color: #f49624;
+}
+
+#enjoyment_two {
+  background-color: #ffff;
+}
+
+#enjoyment_three {
+  background-color: #f49624;
+}
+
+#enjoyment_four {
+  background-color: #f5a938;
+}
+
+#enjoyment_five {
+  background-color: #f7ac3b;
+}
+
+#enjoyment_six {
+  background-color: #f38f1e;
+}
+
+@for $i from 6 through 1 {
+  @keyframes #{ripple+$i} {
+    0% {
+      transform: scale(1);
+    }
+    25% { 
+      transform: scale(1.1 + ($ripple-scale-size * $i));
+    }
+    50% {
+      transform: scale(1 - (.05 * $i));
+    }
+    75% {
+      transform: scale(1.1 + ($ripple-scale-size * $i));
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
